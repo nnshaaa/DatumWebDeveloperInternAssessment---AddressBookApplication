@@ -36,57 +36,67 @@
 
             <!-- Add Contact Section -->
             <div class="card">
-                <h2>Add New Contact</h2>
+
+                <div class="form-header">
+                    <h2>Add New Contact</h2>
+
+                    <button type="submit" form="contactForm" class="add-btn">
+                        Add Contact
+                    </button>
+                </div>
 
                 <form id="contactForm">
-                    <div class="form-grid">
 
                         <!-- Name -->
-                        <div class="form-group">
+                        <div class="form-group full-width">
                             <label>Name:</label>
                             <input type="text" id="name" placeholder="Enter name" autocomplete="off" required>
                         </div>
                         
-                        <!-- Phone -->
-                        <div class="form-group">
-                            <label>Phone:</label>
-                            <input type="int" id="phone" placeholder="Enter phone number" autocomplete="off" required>
+                        <!-- Phone and email row -->
+                        <div class="form-row">
+                            <!-- Phone -->
+                            <div class="form-group">
+                                <label>Phone:</label>
+                                <input type="text" id="phone" placeholder="Enter phone number" autocomplete="off" required>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <input type="email" id="email" placeholder="Enter email" autocomplete="off" required>
+                            </div>
                         </div>
-                        
-                        <!-- Email -->
-                        <div class="form-group">
-                            <label>Email:</label>
-                            <input type="email" id="email" placeholder="Enter email" autocomplete="off" required>
-                        </div> 
 
-                        <!-- Street -->
-                        <div class="form-group">
-                            <label>Street:</label>
-                            <input type="text" id="street" placeholder="Enter street" autocomplete="off" required>
-                        </div> 
+                        <!-- Address section -->
+                        <h4 class="section-tile">Contact Address</h4>
 
-                        <!-- State -->
-                        <div class="form-group">
-                            <label>State:</label>
-                            <input type="text" id="state" placeholder="Enter state" autocomplete="off" required>
-                        </div> 
+                        <div class="address-row">
+                            <!-- Street -->
+                            <div class="form-group">
+                                <label>Street:</label>
+                                <input type="text" id="street" placeholder="Enter street" autocomplete="off" required>
+                            </div>
 
-                        <!-- Postcode -->
-                        <div class="form-group">
-                            <label>Postcode:</label>
-                            <input type="int" id="postcode" placeholder="Enter postcode" autocomplete="off" required>
-                        </div> 
+                            <!-- State -->
+                            <div class="form-group">
+                                <label>State:</label>
+                                <input type="text" id="state" placeholder="Enter state" autocomplete="off" required>
+                            </div> 
+
+                            <!-- Postcode -->
+                            <div class="form-group">
+                                <label>Postcode:</label>
+                                <input type="text" id="postcode" placeholder="Enter postcode" autocomplete="off" required>
+                            </div> 
+                        </div>
 
                         <!-- Description -->
-                        <div class="form-group">
+                        <div class="form-group full-width">
                             <label>Description:</label>
-                            <textarea id="description" placeholder="Enter description" autocomplete="off"></textarea>
+                            <textarea id="description" placeholder="Enter description"></textarea>
                         </div>
-                        
-                        <button type="submit" class="add-btn">
-                            Add Contact
-                        </button>
-
+                      
                     </div>
                 </form>
             </div>

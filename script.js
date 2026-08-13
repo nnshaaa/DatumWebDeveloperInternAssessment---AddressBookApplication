@@ -9,20 +9,14 @@ const searchInput = document.getElementById("searchInput");
 const contactCount = document.getElementById("contactCount");
 
 
-// ------------------------------------------
-// 3. ADD CONTACT
-// ------------------------------------------
-
-// When the form is submitted,
-// this function will be executed.
-
+// section that used related functions for add new contact form
+// this function will be executed when add contact button is clicked indicate the form is submitted
 contactForm.addEventListener("submit", function(event) {
 
-    // Prevent the page from refreshing
+    // this to prevent the page from refreshing
     event.preventDefault();
 
-
-    // Get values from the form
+    // get values from the all form fields
     const name = document.getElementById("name").value;
     const phone = document.getElementById("phone").value;
     const email = document.getElementById("email").value;
@@ -31,8 +25,7 @@ contactForm.addEventListener("submit", function(event) {
     const postcode = document.getElementById("postcode").value;
     const description = document.getElementById("description").value;
 
-
-    // Create a new contact object
+    // create a new contact object
     const contact = {
 
         // Date.now() creates a simple unique ID
@@ -52,38 +45,29 @@ contactForm.addEventListener("submit", function(event) {
         description: description
     };
 
-
-    // Add the contact object into the array
+    // this function is used to add the contact object into the array
     contacts.push(contact);
 
-
-    // Display updated contacts
+    // this is to display updated contacts after it is added into the array
     displayContacts(contacts);
 
-
-    // Clear the form after adding
+    // this function used to clear the form after adding
     contactForm.reset();
 
 });
 
 
-// ------------------------------------------
-// 4. DISPLAY CONTACTS
-// ------------------------------------------
-
-// This function displays contacts on the webpage.
-
+// section that used related functions for display contacts after it is added into the array
+// this function used to displays the contacts that have been added 
 function displayContacts(contactArray) {
 
-    // Clear previous content
+    // clear previous content
     contactList.innerHTML = "";
 
-
-    // Update contact count
+    // update contact count based on the number of contacts in the array
     contactCount.textContent = contactArray.length + " contacts";
 
-
-    // If there are no contacts
+    // display a message to inform the user which indicate there is no contact consists in the array 
     if (contactArray.length === 0) {
 
         contactList.innerHTML = `
@@ -96,63 +80,48 @@ function displayContacts(contactArray) {
     }
 
 
-    // Loop through every contact
+    // looping through every contact
     contactArray.forEach(function(contact) {
 
-        // Create HTML for each contact
+        // create HTML for each contact
         const contactDiv = document.createElement("div");
 
         contactDiv.className = "contact";
 
-
         contactDiv.innerHTML = `
             <h3>${contact.name}</h3>
-
             <p><strong>📞 Phone:</strong> ${contact.phone}</p>
-
             <p><strong>✉️ Email:</strong> ${contact.email}</p>
-
             <p>
                 <strong>📍 Address:</strong>
                 ${contact.address.street},
                 ${contact.address.state},
                 ${contact.address.postcode}
             </p>
-
             <p>
                 <strong>📝 Description:</strong>
                 ${contact.description || "No description"}
             </p>
 
-            <button 
-                class="delete-btn"
-                onclick="deleteContact(${contact.id})"
-            >
+            <button class="delete-btn" onclick="deleteContact(${contact.id})">
                 Delete
             </button>
         `;
 
-
-        // Add the contact to the webpage
+        // add the contact to the webpage
         contactList.appendChild(contactDiv);
 
     });
 }
 
 
-// ------------------------------------------
-// 5. SEARCH CONTACT
-// ------------------------------------------
-
-// Listen for typing inside the search box.
-
+// section that used related functions for search contact that is contain in the array
 searchInput.addEventListener("input", function() {
 
-    // Get search text
+    // get search text
     const searchText = searchInput.value.toLowerCase();
 
-
-    // Filter contacts based on name
+    // filter contacts based on name
     const filteredContacts = contacts.filter(function(contact) {
 
         return contact.name
@@ -161,38 +130,26 @@ searchInput.addEventListener("input", function() {
 
     });
 
-
-    // Display only matching contacts
+    // display only matching contacts
     displayContacts(filteredContacts);
 
 });
 
 
-// ------------------------------------------
-// 6. DELETE CONTACT
-// ------------------------------------------
-
-// Delete contact using its ID.
-
+// section that used related functions for delete contact from the array
+// to delete contact using its ID.
 function deleteContact(id) {
 
-    // Create a new array without the selected contact
+    // create a new array without the selected contact
     contacts = contacts.filter(function(contact) {
 
         return contact.id !== id;
 
     });
 
-
-    // Display updated contacts
+    // display updated contacts
     displayContacts(contacts);
 }
 
-
-// ------------------------------------------
-// 7. INITIAL DISPLAY
-// ------------------------------------------
-
 // Show empty contact list when page first loads.
-
 displayContacts(contacts);
