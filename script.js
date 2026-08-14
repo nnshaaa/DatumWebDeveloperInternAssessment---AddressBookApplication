@@ -27,16 +27,12 @@ contactForm.addEventListener("submit", function(event) {
 
     // create a new contact object
     const contact = {
-
-        // Date.now() creates a simple unique ID
-        id: Date.now(),
-
+        id: Date.now(),     // Date.now() used to creates a simple unique ID for the data
         name: name,
         phone: phone,
         email: email,
 
-        // Address contains Street + State + Postcode
-        address: {
+        address: {                      // nested object to store address information
             street: street,
             state: state,
             postcode: postcode
@@ -48,7 +44,7 @@ contactForm.addEventListener("submit", function(event) {
     // this function is used to add the contact object into the array
     contacts.push(contact);
 
-    // this is to display updated contacts after it is added into the array
+    // to display updated contacts after it is added into the array which flow is User submits form->create object->contacts.push()->displayContacts()->UI updated
     displayContacts(contacts);
 
     // this function used to clear the form after adding
@@ -61,7 +57,7 @@ contactForm.addEventListener("submit", function(event) {
 // this function used to displays the contacts that have been added 
 function displayContacts(contactArray) {
 
-    // clear previous content
+    // to clear previous content to prevents duplicate contacts from appearing when the display function is called multiple times
     contactList.innerHTML = "";
 
     // update contact count based on the number of contacts in the array
@@ -79,8 +75,7 @@ function displayContacts(contactArray) {
         return;
     }
 
-
-    // looping through every contact
+    // looping through every item in an array
     contactArray.forEach(function(contact) {
 
         // create HTML for each contact
@@ -88,6 +83,7 @@ function displayContacts(contactArray) {
 
         contactDiv.className = "contact";
 
+        // innerHTML is used to insert or modify HTML elements
         contactDiv.innerHTML = `
             <h3>${contact.name}</h3>
             <p><strong>📞 Phone:</strong> ${contact.phone}</p>
@@ -118,15 +114,15 @@ function displayContacts(contactArray) {
 // section that used related functions for search contact that is contain in the array
 searchInput.addEventListener("input", function() {
 
-    // get search text
+    // get search text entered by the user and convert it to lowercase to make case-insensitive search
     const searchText = searchInput.value.toLowerCase();
 
-    // filter contacts based on name
+    // filter() creates a new array containing only the elements that meet a specific condition such as the only contacts whose names include in search text
     const filteredContacts = contacts.filter(function(contact) {
 
         return contact.name
             .toLowerCase()
-            .includes(searchText);
+            .includes(searchText);  // to checks whether a string contains a particular value like the contact name contains in the search text
 
     });
 
@@ -137,14 +133,12 @@ searchInput.addEventListener("input", function() {
 
 
 // section that used related functions for delete contact from the array
-// to delete contact using its ID.
+// to delete contact using its ID
 function deleteContact(id) {
 
-    // create a new array without the selected contact
+    // filter() used to create a new array that contains every contact except the one with the matching ID
     contacts = contacts.filter(function(contact) {
-
         return contact.id !== id;
-
     });
 
     // display updated contacts
